@@ -161,5 +161,39 @@ namespace Mvd
             dictionary.Clear();
         }
 
+        public IEnumerable<TType> IntersectingValues(List<TKey> keys)
+        {
+            if(!dictionary.Keys.Any(x => keys.Contains(x)))
+            {
+                return  Enumerable.Empty<TType>();
+            }
+
+            var matchingEntries = dictionary.Where(x => keys.Contains(x.Key)).Select(x => dictionary[x.Key]);
+
+            IEnumerable<TType> temp  = new List<TType>();
+            IEnumerable<TType> d = matchingEntries.First();
+
+            foreach(var item in matchingEntries.Skip(1))
+            {
+                temp = d;
+                var intersect = temp.Intersect(item);
+
+                if(intersect.Count() > 0)
+                {
+                    temp = intersect;
+                }
+                else
+                {
+                    temp = Enumerable.Empty<TType>();
+                    break;
+                }
+                
+                d = temp;
+            }
+
+           
+            return temp;
+        }
+
     }
 }

@@ -73,6 +73,11 @@ namespace MultivalueDictionaryProject
                             string countKey = Console.ReadLine();
                             Count(countKey);
                             break;
+                        case "INTERSECT":
+                            string intersectKeys = Console.ReadLine();
+                            Intersect(intersectKeys);
+                            command = GetChoice();
+                            break;
                         case "EXIT":
                             Environment.Exit(0);
                             break;
@@ -95,6 +100,16 @@ namespace MultivalueDictionaryProject
         }
 
 
+        public void Intersect(string keys)
+        {
+            var keyList = keys.Split(' ');
+
+            var intersectingValues = mvd.IntersectingValues(keyList.ToList());
+
+            intersectingValues.ToList().ForEach(x => Console.WriteLine(x));
+
+            Console.WriteLine();
+        }
         //Get keys in dictionary
         public void GetKeys()
         {

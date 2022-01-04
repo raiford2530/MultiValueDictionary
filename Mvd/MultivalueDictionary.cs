@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiValueDictionary
+namespace Mvd
 {
     public class MultiValueDicationary<TKey, TType>
     {
         private Dictionary<TKey, List<TType>> dictionary;
 
+        public List<TType> this[TKey key]
+        {
+            get
+            {
+                return dictionary[key];
+            }
+        }
+
+        public int Count
+        {
+            get
+            {
+                return dictionary.Count;
+            }
+        }
         public IEnumerable<TKey> Keys
         {
             get
@@ -130,7 +145,7 @@ namespace MultiValueDictionary
         }
 
         //Returns the count for the values of a given key
-        public int Count(TKey key)
+        public int MemberCount(TKey key)
         {
             if (!KeyExists(key))
             {

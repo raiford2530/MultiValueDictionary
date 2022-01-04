@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mvd;
 
-namespace MultiValueDictionary
+namespace MultivalueDictionaryProject
 {
     public class App
     {
@@ -84,6 +85,7 @@ namespace MultiValueDictionary
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    Console.WriteLine();
                     command = GetChoice();
                     continue;
                 }
@@ -96,7 +98,7 @@ namespace MultiValueDictionary
         //Get keys in dictionary
         public void GetKeys()
         {
-            foreach(var item in mvd.Keys)
+            foreach (var item in mvd.Keys)
             {
                 Console.WriteLine($"{item}\n");
             }
@@ -139,9 +141,9 @@ namespace MultiValueDictionary
         //Displays all items in dictionary
         public void Items()
         {
-            foreach(var item in mvd)
+            foreach (var item in mvd)
             {
-                foreach(var value in item.Value)
+                foreach (var value in item.Value)
                 {
                     Console.WriteLine($"{item.Key}: {value}");
                 }
@@ -160,7 +162,7 @@ namespace MultiValueDictionary
 
         //Removes all values from a key and removes key from dictionary
         public void RemoveAll(string key)
-        {        
+        {
             mvd.RemoveAll(key);
             Console.WriteLine("Removed\n");
         }
@@ -168,10 +170,10 @@ namespace MultiValueDictionary
         //DIsplays all members in dictionary
         public void AllMembers()
         {
-           foreach(var item in mvd.AllMembers())
-           {
+            foreach (var item in mvd.AllMembers())
+            {
                 Console.WriteLine(item);
-           }
+            }
 
             Console.WriteLine();
         }

@@ -169,21 +169,15 @@ namespace Mvd
             }
 
             var matchingEntries = dictionary.Where(x => keys.Contains(x.Key)).Select(x => dictionary[x.Key]);
-            
-            IEnumerable<TType> temp = Enumerable.Empty<TType>();
-            int count = 1;
 
-            foreach(var item in matchingEntries)
+            HashSet<TType> firstList = new HashSet<TType>(matchingEntries.First());
+
+            foreach(var item in matchingEntries.Skip(1))
             {
-                if (count == 1)
-                    temp = item;
-                else
-                    temp = temp.Intersect(item);
-
-                count++;
+                firstList.IntersectWith(item);
             }
            
-            return temp;
+            return firstList;
         }
 
     }

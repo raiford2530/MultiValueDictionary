@@ -161,9 +161,9 @@ namespace Mvd
             dictionary.Clear();
         }
 
-        public IEnumerable<TType> IntersectingValues(List<TKey> keys)
+        public IEnumerable<TType> IntersectingValues(params TKey[]  keys)
         {
-            if(!dictionary.Keys.Any(x => keys.Contains(x)))
+            if(!keys.Any(x => dictionary.ContainsKey(x)))
             {
                 return  Enumerable.Empty<TType>();
             }

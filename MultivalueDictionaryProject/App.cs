@@ -104,7 +104,7 @@ namespace MultivalueDictionaryProject
         {
             var keyList = keys.Split(' ');
 
-            var intersectingValues = mvd.IntersectingValues(keyList.ToList());
+            var intersectingValues = mvd.IntersectingValues(keyList);
 
             intersectingValues.ToList().ForEach(x => Console.WriteLine(x));
 
